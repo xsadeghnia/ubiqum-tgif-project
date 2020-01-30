@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>House</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="element element-logo">
+                <img src="images/LOGOTGIF.jpg" alt="" class="logo">
+            </div>
+            <div class="element element-mail">
+                <img src="images/blue-envelope-icon-png.png" alt="email" class="img">
+                <a href="mailto:info@tgif.net" class="mail">info@tgif.net</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="element single">
+                <nav class="navbar  afi-color">
+                    <div class="container-fluid">
+                      <ul class="nav navbar-nav">
+                        <li class="active"><a href="home.html">Home</a></li>
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Congress 113 <span class="caret"></span></a>
+                          <ul class="dropdown-menu">
+                            <li><a href="senate-data.html">Senate</a></li>
+                            <li><a href="house-data.html">House</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+                  </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="element single">
+                <h2>Congressmen</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="element single">
+                <p class="main-txt">The major power of the House is to pass federal legislation that affects the entire country, although its bills must also be passed by the Senate and further agreed to by the U.S. President before becoming law (unless both the House and Senate re-pass the legislation with a two-thirds majority in each chamber). The House has some exclusive powers: the power to initiate revenue bills, to impeach officials (impeached officials are subsequently tried in the Senate), and to elect the U.S. President in case there is no majority in the Electoral College.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="element element-check">
+                <label for="">Filter by party</label>
+                <input type="checkbox" name="" id="">
+                <label for="">Republican</label>
+                <input type="checkbox" name="" id="">
+                <label for="">Democrat</label>
+                <input type="checkbox" name="" id="">
+                <label for="">Independent</label>
+            </div>
+            <div class="element element-list">
+                <label for="">Filter by state</label>
+                <select name="state" id="us-st">
+                    <option value="all" selected>All</option>
+                    <option value="tn">TN</option>
+                    <option value="nh">NH</option>
+                    <option value="wi">WI</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="element tbl-single">
+                <div class="container">           
+                    <table class="table table-bordered" id="senate-data">
+                      <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Party</th>
+                            <th>State</th>
+                            <th>Years in office</th>
+                            <th>%Votes W/Party</th>
+                        </tr>
+                      </thead>
+                      
+                    </table>
+                  </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="element single">
+                <!-- Footer -->
+<footer class="page-footer font-small afi-color">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3 footer"> 
+        © 2020 Copyright | All Right Reserved
+    </div>
+    <!-- Copyright -->
+  
+  </footer>
+  <!-- Footer -->
+            </div>
+        </div>
+    </div>
+    <script src="house.js"></script>  
+    <script src="main.js"></script>  
+</body>
+</html>
