@@ -76,3 +76,34 @@ height: auto;
 .home-right{
     width: 42%;
 }
+.fourDiv{
+    width: 93% !important;
+}
+.top-left-p{
+    text-align: justify;
+}
+.table-header-top{
+    margin-top: 35px;   
+}
+.table-header{
+    font-size: 20px;
+    font-weight: bold; 
+    font-family: inherit;
+}
+
+/*---------------------------------------------------MobileSize*/
+@media(max-width:768px){
+    .logo{
+        width: 100%;
+        margin-top: 10%;
+    }
+    .tgif-img{
+        display: none;
+    }
+    .home-left{
+        width: 100%;
+    }
+    .home-right{
+        width: 0px;
+    }
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
+    <title>House Attendance</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="element element-logo">
+          <img src="images/LOGOTGIF.jpg" alt="" class="logo">
+      </div>
+      <div class="element element-mail">
+          <img src="images/blue-envelope-icon-png.png" alt="email" class="img">
+          <a href="mailto:info@tgif.net" class="mail">info@tgif.net</a>
+      </div>
+  </div>
+  <div class="row">
+      <div class="element single">
+          <nav class="navbar afi-color">
+              <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                  <li class="active"><a href="home.html">Home</a></li>
+                  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Congress 113 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="senate-data.html">Senate</a></li>
+                      <li><a href="house-data.html">House</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Attendance<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="senate-attendance.html">Senate</a></li>
+                          <li><a href="house-attendance.html">House</a></li>
+                        </ul>
+                      </li>
+                  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">party Loyalty<span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                          <li><a href="senate-loyalty.html">Senate</a></li>
+                          <li><a href="house-loyalty.html">House</a></li>
+                        </ul>
+                      </li>
+                </ul>
+              </div>
+            </nav>
+      </div>
+  </div>
+    <div class="row">
+      <div class="element">
+         <h2>ATTENDANCE</h2> 
+      </div>
+      <div class="element">
+        <p class="table-header table-header-top">Senate at a glance</p>
+      </div>
+  </div>
+    <div class="row">
+      <div class="element">
+          <p class="fourDiv top-left-p">The Constitution specifies that a majority of members constitutes a quorum to do business in each house. Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in most cases, debates continue even if a majority is not present.
+            The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p>
+      </div>
+      <div class="element">
+        <table class="table table-bordered fourDiv" id="senate-data">
+          <thead>
+          
+          </thead>
+          
+        </table> 
+      </div>
+  </div>
+  <div class="row">
+    <div class="element single">
+      <hr>
+    </div>
+  </div>
+  <div class="row">
+    <div class="element">
+        <p class="table-header">Least Engaged (Bottom 10% Attendance)</p>
+    </div>
+    <div class="element">
+        <p class="table-header">Most Engaged (Top 10% Attendance)</p>
+    </div>
+</div>
+<div class="row">
+  <div class="element">
+    <table class="table table-bordered fourDiv" id="least-engaged">
+      <thead>
+      <th>Name</th>
+      <th>Nr Of Missed Votes</th>
+      <th>% Missed</th>
+      </thead>
+      
+    </table>
+  </div>
+  <div class="element">
+    <table class="table table-bordered fourDiv" id="most-engaged">
+      <thead>
+      <th>Name</th>
+      <th>Nr Of Missed Votes</th>
+      <th>% Missed</th>
+      </thead>
+      
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="element single">
+      <!-- Footer -->
+      <footer class="page-footer font-small afi-color">
+
+          <!-- Copyright -->
+          <div class="footer-copyright text-center py-3 footer">
+              © 2016 TGIF | All Rights Reserved
+          </div>
+          <!-- Copyright -->
+      
+      </footer>
+      <!-- Footer -->
+  </div>
+</div>
+  </div>
+    
+    <script src="house.js"></script>
+    <script src="attendance-common.js"></script>
+    <script src="house-attendance.js"></script>
+</body>
+</html>

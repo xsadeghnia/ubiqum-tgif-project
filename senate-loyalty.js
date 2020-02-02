@@ -1,0 +1,1 @@
+fillTable(statistics, true);
