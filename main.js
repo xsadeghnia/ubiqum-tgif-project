@@ -40,9 +40,43 @@ function checkBoxFilter(){
 			filteredData.push(members[i]);
 		}
 	}
-	fillTable(filteredData);
+	listFilter(filteredData);
 }
 document.getElementById("rep").addEventListener('change', checkBoxFilter);
 document.getElementById("dem").addEventListener('change',checkBoxFilter);
 document.getElementById("ind").addEventListener('change',checkBoxFilter);
  
+function getState(mems){
+    var stateArr = [];
+    for (let i = 0; i < mems.length; i++) {
+        if (!stateArr.includes(mems[i].state))
+        stateArr.push(mems[i].state);
+    }
+   return stateArr.sort();
+}
+var stateItems = getState(members);
+addItemsToDropDown(stateItems)
+function addItemsToDropDown(stateItems){
+    var x = document.getElementById("mySelect");
+    for (let i = 0; i < stateItems.length; i++) {
+        var option =document.createElement("option");
+        option.text = option.value = stateItems[i]; 
+        x.add(option);
+    }
+  }
+  function listFilter(members){
+	var e = document.getElementById("mySelect");
+    var result = e.options[e.selectedIndex].text;
+    var x = e.selectedIndex;
+    var y = document.getElementsByTagName("option")[x].value;
+	var filteredData = []
+	for (let i = 0; i < members.length; i++) {
+		if (members[i].state == y || e.value == 'all' ) {
+			filteredData.push(members[i]);
+		} 
+    }
+    fillTable(filteredData);
+
+}
+
+document.getElementById("mySelect").addEventListener('change',checkBoxFilter);
