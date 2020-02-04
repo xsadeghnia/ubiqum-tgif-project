@@ -1,1 +1,0 @@
-fillTable(statistics, true);
