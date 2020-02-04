@@ -72,53 +72,53 @@ var totalOfVoted = (statistics.democratVoteAvg  + statistics.republicanVoteAvg +
         cell3.innerHTML = totalOfVoted.toFixed(2);
 }
 /*-------------------------------------------------------------LeastEngaged*/
-function leastEngaged(members){
+function leastLoyal(members){
     var votesArr = [];
-    var leastArr = [];
+    var leastLoyalArr = [];
     votesArr = members.sort(function(a,b){return a.votes_with_party_pct - b.votes_with_party_pct});
         var showrows = votesArr.length - (votesArr.length * 0.1+1) ;
         for (let i = votesArr.length-1 ; i > showrows ; i--) {
-            leastArr.push(votesArr[i]);  
+            leastLoyalArr.push(votesArr[i]);  
         }
-        return leastArr;
+        return leastLoyalArr;
 }
-var leastArr = leastEngaged(members);
-function showTable(leastArr) {
+var leastLoyalArr = leastLoyal(members);
+function showTable(leastLoyalArr) {
     var table = document.getElementById("most-engaged");
-    for (let i = 0; i < leastArr.length; i++) {
+    for (let i = 0; i < leastLoyalArr.length; i++) {
         var row= table.insertRow(table.rows.length);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
-        cell1.innerHTML = leastArr[i].last_name +","+ leastArr[i].first_name;
-        cell2.innerHTML = leastArr[i].total_votes;
-        cell3.innerHTML = leastArr[i].votes_with_party_pct;
+        cell1.innerHTML = leastLoyalArr[i].last_name +","+ leastLoyalArr[i].first_name;
+        cell2.innerHTML = leastLoyalArr[i].total_votes;
+        cell3.innerHTML = leastLoyalArr[i].votes_with_party_pct;
     }
 }
-showTable(leastArr);
+showTable(leastLoyalArr);
 /*-------------------------------------------------------------MostEngaged*/
-function mostEngaged(members){
+function mostLoyal(members){
     var votesArr = [];
-    var mostArr = [];
+    var mostLoyalArr = [];
     votesArr = members.sort(function(a,b){return a.votes_with_party_pct - b.votes_with_party_pct});
         var showrows = votesArr.length * 0.1 ;
         for (let i = 0 ; i < showrows ; i++) {
-            mostArr.push(votesArr[i]);  
+            mostLoyalArr.push(votesArr[i]);  
         }
-        return mostArr;
+        return mostLoyalArr;
 }
 /*console.log(mostEngaged(members));*/
-var mostArr = mostEngaged(members);
-function insertTable(mostArr) {
+var mostLoyalArr = mostLoyal(members);
+function insertTable(mostLoyalArr) {
     var table = document.getElementById("least-engaged");
-    for (let i = 0; i < leastArr.length; i++) {
+    for (let i = 0; i < mostLoyalArr.length; i++) {
         var row= table.insertRow(table.rows.length);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
-        cell1.innerHTML = mostArr[i].last_name +","+ mostArr[i].first_name;
-        cell2.innerHTML = mostArr[i].total_votes;
-        cell3.innerHTML = mostArr[i].votes_with_party_pct;
+        cell1.innerHTML = mostLoyalArr[i].last_name +","+ mostLoyalArr[i].first_name;
+        cell2.innerHTML = mostLoyalArr[i].total_votes;
+        cell3.innerHTML = mostLoyalArr[i].votes_with_party_pct;
     }
 }
-insertTable(mostArr);
+insertTable(mostLoyalArr);

@@ -1,5 +1,4 @@
-let members = data.results[0].members;
-function partyCounter(members , x){
+function partyCounter(members ,x){
     var arr = [];
     for (var i = 0 ; i < members.length ; i++) {
         if(members[i].party == x){
@@ -15,20 +14,6 @@ function votAvg(ar){
     }
     return  (sum / ar.length);
 }
-
-
-var statistics = {};
-statistics.democrats = partyCounter(members,"D");
-statistics.republicans = partyCounter(members, "R");
-statistics.independents = partyCounter(members, "I");
-statistics.nrOfDemocrats = statistics.democrats.length;
-statistics.nrOfRepublicans = statistics.republicans.length;
-statistics.nrOfIndependents = statistics.independents.length;
-statistics.democratVoteAvg = votAvg(statistics.democrats);
-statistics.republicanVoteAvg = votAvg(statistics.republicans);
-statistics.independentVoteAvg = votAvg(statistics.independents);
-
-
 function fillTable(statistics, isSenate) {
     var totalOfReps = statistics.nrOfDemocrats + (isSenate ? statistics.nrOfIndependents : 0) + statistics.nrOfRepublicans;
 var totalOfVoted = (statistics.democratVoteAvg  + statistics.republicanVoteAvg + (isSenate ? statistics.independentVoteAvg : 0))  / (isSenate ? 3 : 2) ;
@@ -46,14 +31,14 @@ var totalOfVoted = (statistics.democratVoteAvg  + statistics.republicanVoteAvg +
         var cell3 = row.insertCell(2);
         cell1.innerHTML = "Democrats";
         cell2.innerHTML = statistics.nrOfDemocrats;
-        cell3.innerHTML = statistics.democratVoteAvg.toFixed(2);
+        cell3.innerHTML = statistics.democratVoteAvg;
         var row = table.insertRow(2);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
         cell1.innerHTML = "Republicans";
         cell2.innerHTML = statistics.nrOfRepublicans;
-        cell3.innerHTML = statistics.republicanVoteAvg.toFixed(2);
+        cell3.innerHTML = statistics.republicanVoteAvg;
         if(isSenate){
             var row = table.insertRow(3);
             var cell1 = row.insertCell(0);
@@ -61,7 +46,7 @@ var totalOfVoted = (statistics.democratVoteAvg  + statistics.republicanVoteAvg +
             var cell3 = row.insertCell(2);
             cell1.innerHTML = "Independents";
             cell2.innerHTML = statistics.nrOfIndependents;
-            cell3.innerHTML = statistics.independentVoteAvg.toFixed(2);
+            cell3.innerHTML = statistics.independentVoteAvg
         }
         var row = table.insertRow(isSenate ? 4 : 3);
         var cell1 = row.insertCell(0);
@@ -69,9 +54,8 @@ var totalOfVoted = (statistics.democratVoteAvg  + statistics.republicanVoteAvg +
         var cell3 = row.insertCell(2);
         cell1.innerHTML = "Total";
         cell2.innerHTML = totalOfReps;
-        cell3.innerHTML = totalOfVoted.toFixed(2);
+        cell3.innerHTML = totalOfVoted;
 }
-
 /*-------------------------------------------------------------LeastEngaged*/
 function leastEngaged(members){
     var missedVotesArr = [];
@@ -83,7 +67,7 @@ function leastEngaged(members){
         }
         return leastArr;
 }
-var leastArr = leastEngaged(members);
+
 function showTable(leastArr) {
     var table = document.getElementById("least-engaged");
     for (let i = 0; i < leastArr.length; i++) {
@@ -96,7 +80,6 @@ function showTable(leastArr) {
         cell3.innerHTML = leastArr[i].missed_votes_pct;
     }
 }
-showTable(leastArr);
 /*-------------------------------------------------------------MostEngaged*/
 function mostEngaged(members){
     var missedVotesArr = [];
@@ -108,11 +91,9 @@ function mostEngaged(members){
         }
         return mostArr;
 }
-/*console.log(mostEngaged(members));*/
-var mostArr = mostEngaged(members);
 function insertTable(mostArr) {
     var table = document.getElementById("most-engaged");
-    for (let i = 0; i < leastArr.length; i++) {
+    for (let i = 0; i < mostArr.length; i++) {
         var row= table.insertRow(table.rows.length);
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
@@ -122,4 +103,57 @@ function insertTable(mostArr) {
         cell3.innerHTML = mostArr[i].missed_votes_pct;
     }
 }
-insertTable(mostArr);
+function getData(url, isSenate) {
+const options = {
+    headers: new Headers({'X-API-Key': 'V81SlpEOhDtgWaZ4eaBufh1Tf8S9HQlKaZiU3Rrw'})
+};
+fetch(url, options)
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
+      response.json().then(function(data) {
+        console.log(data);
+        let members = data.results[0].members;
+        var statistics = {};
+        statistics.democrats = partyCounter(members,"D");
+        statistics.republicans = partyCounter(members, "R");
+        statistics.independents = partyCounter(members, "I");
+        statistics.nrOfDemocrats = statistics.democrats.length;
+        statistics.nrOfRepublicans = statistics.republicans.length;
+        statistics.nrOfIndependents = statistics.independents.length;
+        statistics.democratVoteAvg = votAvg(statistics.democrats);
+        statistics.republicanVoteAvg = votAvg(statistics.republicans);
+        statistics.independentVoteAvg = votAvg(statistics.independents);
+        var x = "";
+        partyCounter(members ,x);
+        var ar = [];
+        votAvg(ar);
+        fillTable(statistics, isSenate);
+        var leastArr = leastEngaged(members);
+        var mostArr = mostEngaged(members);
+        showTable(leastArr);
+        insertTable(mostArr);
+        
+      });
+    }
+  )
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  });
+}
+var url = window.location.pathname;
+const senateURL = 'https://api.propublica.org/congress/v1/113/senate/members.json';
+const houseURL = 'https://api.propublica.org/congress/v1/113/house/members.json';
+var filename = url.substring(url.lastIndexOf('/')+1);
+isSenate = false;
+ if (filename == 'senate-attendance.html') {//senate 
+    isSenate = true;
+  getData(senateURL, isSenate);
+ }if (filename =='house-attendance.html') { //house
+    isSenate = false
+   getData(houseURL, isSenate);
+ }
